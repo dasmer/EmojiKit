@@ -26,7 +26,7 @@ let fetcher = EmojiFetcher()
 ```swift
   fetcher.query("food") { emojiResults in
     for (emoji) in emojiResults {
-      NSLog("Current Emoji: \(emoji.character) \(emoji.name)")
+      print("Current Emoji: \(emoji.character) \(emoji.name)")
     }
   }
 ```
