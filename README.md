@@ -16,13 +16,18 @@ pod 'EmojiKit', '~> 1.0'
 Usage
 -----
 ##### 1. Create an EmojiFetcher instance variable.
-```
+
+```swift
 let fetcher = EmojiFetcher()
 ```
+
 ##### 2. Use EmojiFetcher's `query` function to get an array of `Emoji` structs that match the given search string.
-```
+
+```swift
   fetcher.query("food") { emojiResults in
-      // Use emojiResults
+    for (emoji) in emojiResults {
+      NSLog("Current Emoji: \(emoji.character) \(emoji.name)")
+    }
   }
 ```
 
