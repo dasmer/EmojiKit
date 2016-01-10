@@ -28,26 +28,35 @@ public struct EmojiFetcher {
     public func query(searchString: String, completion: ([Emoji] -> Void)) {
         cancelFetches()
 
-        let operation = EmojiFetchOperation(searchString: searchString)
-
-        operation.completionBlock = {
-
-            if operation.cancelled {
-                return;
-            }
-
+        if let emoji = EmojiFetchOperation.emojiDictionary[searchString] {
             dispatch_async(dispatch_get_main_queue()) {
-                completion(operation.results)
+                completion([emoji])
             }
-        }
+        } else {
+            let operation = EmojiFetchOperation(searchString: searchString)
 
-        backgroundQueue.addOperation(operation)
+            operation.completionBlock = {
+
+                if operation.cancelled {
+                    return;
+                }
+
+                dispatch_async(dispatch_get_main_queue()) {
+                    completion(operation.results)
+                }
+            }
+
+            backgroundQueue.addOperation(operation)
+        }
     }
 
     public func cancelFetches() {
         backgroundQueue.cancelAllOperations()
     }
 
+    public func isEmojiRepresentedByString(string: String) -> Bool {
+        return EmojiFetchOperation.emojiDictionary[string] != nil
+    }
 }
 
 private final class EmojiFetchOperation: NSOperation {
@@ -59,6 +68,14 @@ private final class EmojiFetchOperation: NSOperation {
             jsonDictionaries = jsonObject as? [JSONDictionary] else { return [] }
 
         return jsonDictionaries.flatMap { Emoji(dictionary: $0) }
+    }()
+
+    static let emojiDictionary: [String: Emoji]  = {
+        var dictionary = Dictionary<String, Emoji>(minimumCapacity:EmojiFetchOperation.allEmoji.count)
+        EmojiFetchOperation.allEmoji.forEach {
+            dictionary[$0.character] = $0
+        }
+        return dictionary
     }()
 
 
@@ -112,12 +129,12 @@ private final class EmojiFetchOperation: NSOperation {
 
             var validResult = false
 
-                for alias in emoji.aliases {
-                    if alias.hasPrefix(lowercaseSearchString) {
-                        validResult = true
-                        break
-                    }
+            for alias in emoji.aliases {
+                if alias.hasPrefix(lowercaseSearchString) {
+                    validResult = true
+                    break
                 }
+            }
 
             return validResult
         }
