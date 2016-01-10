@@ -26,11 +26,11 @@ let fetcher = EmojiFetcher()
 ##### 2. Use EmojiFetcher's `query` function to get an array of `Emoji` structs that match the given search string.
 
 ```swift
-  fetcher.query("food") { emojiResults in
-    for (emoji) in emojiResults {
-      print("Current Emoji: \(emoji.character) \(emoji.name)")
-    }
+fetcher.query("food") { emojiResults in
+  for emoji in emojiResults {
+    print("Current Emoji: \(emoji.character) \(emoji.name)")
   }
+}
 ```
 
 Contributing
