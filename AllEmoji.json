@@ -770,7 +770,9 @@
 	"name": "space invader"
 }, {
 	"character": "❤",
-	"aliases": [],
+	"aliases": [
+		"love"
+		],
 	"groups": [],
 	"name": "heart"
 }, {
@@ -2097,7 +2099,8 @@
 }, {
 	"character": "💛",
 	"aliases": [
-		"heart"
+		"heart",
+		"love"
 	],
 	"groups": [],
 	"name": "yellow heart"
