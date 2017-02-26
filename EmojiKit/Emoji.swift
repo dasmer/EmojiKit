@@ -24,9 +24,9 @@ extension Emoji: DictionaryDeserializable, DictionarySerializable {
 
     public init?(dictionary: JSONDictionary) {
         guard let name = dictionary["name"] as? String,
-            character = dictionary["character"] as? String,
-            aliases = dictionary["aliases"] as? [String],
-            groups = dictionary["groups"] as? [String] else { return nil }
+            let character = dictionary["character"] as? String,
+            let aliases = dictionary["aliases"] as? [String],
+            let groups = dictionary["groups"] as? [String] else { return nil }
 
         self.name = name
         self.character = character
