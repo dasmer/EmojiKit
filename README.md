@@ -9,7 +9,7 @@ If you’re using [Carthage](http://github.com/Carthage/Carthage), add EmojiKit 
 github "dasmer/EmojiKit"
 ```
 
-Otherwise, if you're using [Cocoapods](http://cocoapods.org), add EmojiKit to your `Podfile`:
+Otherwise, if you're using [CocoaPods](http://cocoapods.org), add EmojiKit to your `Podfile`:
 
 ```ruby
 pod 'EmojiKit', '~> 0.0.1'
