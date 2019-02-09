@@ -14,7 +14,7 @@ private let AllEmojiArray: [Emoji] = {
         let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []),
         let jsonDictionaries = jsonObject as? [JSONDictionary] else { return [] }
 
-    return jsonDictionaries.flatMap { Emoji(dictionary: $0) }
+    return jsonDictionaries.compactMap { Emoji(dictionary: $0) }
 }()
 
 private let AllEmojiDictionary: [String: Emoji]  = {
@@ -116,7 +116,7 @@ private final class EmojiFetchOperation: Operation {
 
             var validResult = false
 
-            let emojiNameWords = emoji.name.characters.split{$0 == " "}.map(String.init)
+            let emojiNameWords = emoji.name.split{$0 == " "}.map(String.init)
 
             for emojiNameWord in emojiNameWords {
                 if emojiNameWord.hasPrefix(lowercaseSearchString) {
