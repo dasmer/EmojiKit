@@ -47,8 +47,8 @@ extension Emoji: DictionaryDeserializable, DictionarySerializable {
 
 extension Emoji: Hashable {
 
-    public var hashValue: Int {
-        return ID.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(ID)
     }
 }
 

@@ -112,7 +112,7 @@ private final class EmojiFetchOperation: Operation {
 
         // Matches of individual words in the name
         results += AllEmojiArray.filter { emoji in
-            guard results.index(of: emoji) == nil else { return false }
+            guard results.firstIndex(of: emoji) == nil else { return false }
 
             var validResult = false
 
@@ -130,7 +130,7 @@ private final class EmojiFetchOperation: Operation {
 
         // Alias matches
         results += AllEmojiArray.filter { emoji in
-            guard results.index(of: emoji) == nil else { return false }
+            guard results.firstIndex(of: emoji) == nil else { return false }
 
             var validResult = false
 
@@ -147,7 +147,7 @@ private final class EmojiFetchOperation: Operation {
 
         // Group matches
         results += AllEmojiArray.filter { emoji in
-            guard results.index(of: emoji) == nil else { return false }
+            guard results.firstIndex(of: emoji) == nil else { return false }
 
             var validResult = false
 
