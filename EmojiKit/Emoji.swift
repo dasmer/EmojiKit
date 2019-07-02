@@ -8,6 +8,7 @@
 
 public struct Emoji: Equatable {
 
+    public let id = UUID()
     public let name: String
     public let character: String
     internal let aliases: [String]
